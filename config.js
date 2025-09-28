@@ -1,2 +1,0 @@
-// NASA API Configuration
-const NASA_API_KEY = 'YT0uxNDGA3lzsjQ1vq07yLyppXCMCkNfh4pbYiYv';
