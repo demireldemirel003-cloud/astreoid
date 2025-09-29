@@ -398,11 +398,24 @@
             const marker = L.marker([lat, lng], { icon: icon }).addTo(map);
             
             const popupContent = createPopupContent(asteroid, closeApproach);
+            // yönü haritadaki konuma göre belirle
+            const lat = marker.getLatLng().lat;
+            const bounds = map.getBounds();
+            const span = bounds.getNorth() - bounds.getSouth();
+            const topThreshold = bounds.getNorth() - span * 0.25;
+            const bottomThreshold = bounds.getSouth() + span * 0.25;
+
+            let direction;
+            if (lat >= topThreshold) direction = 'bottom';
+            else if (lat <= bottomThreshold) direction = 'top';
+            else direction = 'auto';
+
             marker.bindPopup(popupContent, {
-                maxWidth: 300,
-                className: 'asteroid-popup',
-                direction: 'auto' // Popup'ın ekran sınırlarına göre otomatik yön değiştirmesini sağlar
+              maxWidth: 300,
+              className: 'asteroid-popup',
+              direction
             });
+
             
             asteroidMarkers.push(marker);
         }
@@ -492,3 +505,4 @@
 </body>
 
 </html>
+
