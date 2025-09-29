@@ -400,7 +400,8 @@
             const popupContent = createPopupContent(asteroid, closeApproach);
             marker.bindPopup(popupContent, {
                 maxWidth: 300,
-                className: 'asteroid-popup'
+                className: 'asteroid-popup',
+                direction: 'auto' // Popup'ın ekran sınırlarına göre otomatik yön değiştirmesini sağlar
             });
             
             asteroidMarkers.push(marker);
@@ -489,4 +490,5 @@
         }
     </script>
 </body>
+
 </html>
